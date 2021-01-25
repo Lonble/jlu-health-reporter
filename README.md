@@ -6,6 +6,14 @@
 
 以 WTFPL 授权开源，爱干嘛用干嘛用。
 
+## 项目声明
+
+**本项目是TechCiel/jlu-health-reporter的分支，README.md也fork自源项目，仅做了细微修改。**
+
+**项目适用于最新的一日一测温一签到。**
+
+源项目地址：[TechCiel/jlu-health-reporter](https://github.com/TechCiel/jlu-health-reporter)
+
 ## 免责声明
 
 本自动程序为个人使用开发，适用于吉林大学各类网上办事大厅事务表单的自动提交，未经充分测试，不保证正常工作，不建议没有调试能力的人使用。
@@ -18,20 +26,22 @@
 
 运行之前**先登录平台提交一次打卡**，务必确保信息准确。
 
-参照 `example-config.json` 建立配置文件 `config.json` ，填入登录信息和对应表单项（目前校区、公寓楼、寝室号和部分同学的班级需要程序每次指定）的值（注意均使用字符串值）。
+参照 `example-config.json` 建立配置文件 `config.json` ，填入登录信息和对应表单项的值（注意均使用字符串值）。
+
+平台会保存上一次打卡时输入的个人信息，所以一般情况下配置文件里仅填写登陆信息即可。
 
 若为**研究生健康申报**使用，请修改配置文件中的 `transaction` 项的值为 `YJSMRDK`（是否适用未经测试）。
 
 Crontab 模式：
 
 ```
-5 8,21 * * * /usr/bin/python3 /path/to/server.py >reporter.log 2>/dev/null
+5 8,21 * * * /usr/bin/python3 /path/to/check.py 2>reporter.log >/dev/null
 ```
 
 手动模式（请在时段内启动）：
 
 ```
-python3 /path/to/local.py
+python3 /path/to/ckeck.py -i
 ```
 
 更多用法请见 [Wiki](https://github.com/TechCiel/jlu-health-reporter/wiki)
